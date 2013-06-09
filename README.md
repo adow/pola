@@ -3,7 +3,7 @@
 Make polariod photo on common photo paper. 
 
 ##Requirements
-(PIL)[http://www.pythonware.com/products/pil/index.htm)
+[PIL](http://www.pythonware.com/products/pil/index.htm)
 
 ##Deployment
 
