@@ -3,11 +3,14 @@
 # pola.py
 #
 # Make polariod photos on common photo paper. 
-# copy pola.py to /usr/bin/
+# copy pola.py to /usr/bin/pola.py
+# ln -s /usr/bin/pola.py /usr/bin/pola
 # Enter the folder that contains original photos:
 #    $ cd PATH
 # Run it: 
 #    $ pola.py 
+#    or 
+#    $ pola
 # You will find output photos in 'pola_output'
 
 import os
@@ -84,4 +87,9 @@ if __name__=="__main__":
     #filename_input="/Users/reynoldqin/Pictures/IMG_0897.JPG"
     #filename_output="/Users/reynoldqin/Pictures/IMG_0897_output.JPG"
     #make_pola(filename_input,filename_output)
-    make_pola_in_folder("/Users/reynoldqin/Pictures/pola")
+    #make_pola_in_folder("/Users/reynoldqin/Pictures/pola")
+    folder='.'
+    if len(sys.argv)>1:
+        folder=sys.argv[1]
+    print folder
+    make_pola_in_folder(folder)
