@@ -1,0 +1,13 @@
+*.DS_Store
+output
+*.pyc
+*.log
+*.swp
+*kana/static/thumbs*
+test/*
+db/*
+*.jpg
+*.png
+build
+dist
+*.egg-info
