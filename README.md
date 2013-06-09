@@ -11,12 +11,10 @@ Make polariod photo on common photo paper.
 
 ##How to use
 
-* Enter the folder that contains original photos:
+Enter the folder that contains original photos and run pola:
 
-    $ cd PATH_OF_PHOTOS 
+	$ cd PATH_OF_PHOTOS 
+	$ pola
 
-* Run it: 
 
-    $ pola
-
-* You will find output photos in 'pola_output'
+You will find output photos in 'pola_output'. 
