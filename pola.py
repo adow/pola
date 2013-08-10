@@ -115,9 +115,37 @@ def make_double_pola(output_filename,
     print "save to file:%s"%(output_filename)
 
 def make_square(input_filename,output_filename,
-                     content_rate_width=3.1,
-                     pola_rate_width=3.5):
-    pass
+                     content_rate=3.1,
+                     pola_rate=3.5,
+                     page_rate_width=3.5,
+                     page_rate_height=5.0):
+    image_square=make_image_square(input_filename,
+                                   content_rate=content_rate,
+                                   pola_rate=pola_rate)
+    if not image_square:
+        return
+    page_width=int(image_square.size[0])
+    page_height=int(page_width*page_rate_height/page_rate_width)
+    image_output=Image.new('RGBA',(page_width,page_height),'white')
+    image_output.paste(image_square,(0,0))
+    #crop line
+    draw_image=ImageDraw.Draw(image_output)
+    draw_image.line([(0,page_width),(page_width,page_width)],fill='#3f3f3f')
+    image_output.save(output_filename,image_square.format,quality=95)
+    print "save_to_file:%s"%(output_filename)
+
+def make_square_in_folder(folder):
+    all=os.listdir(folder)
+    images=[os.path.join(folder,f) for f in all if os.path.splitext(f)[-1].upper() in ['.JPG','JPEG','.PNG']]
+    #print images
+    for one_image in images:
+        dir,filename=os.path.split(one_image)
+        dir_output=os.path.join(dir,'pola_output')
+        output_filename=os.path.join(dir_output,filename)
+        if not os.path.exists(dir_output):
+            os.makedirs(dir_output) 
+        make_square(one_image,output_filename)
+    print 'make polas completed'
 
 def make_four_square(output_filename,
                         input_filename_1,
@@ -221,5 +249,7 @@ if __name__=="__main__":
     cmd='pola'
     if len(sys.argv)>2:
         cmd=sys.argv[2]
-    if cmd=='pola':
+    if cmd=='square':
+        make_square_in_folder(folder)
+    elif cmd=='pola':
         make_pola_in_folder(folder)
